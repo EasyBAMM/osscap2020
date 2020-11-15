@@ -7,14 +7,24 @@ window.onload = function() {
             let model, webcam, ctx, labelContainer, maxPredictions;
     
             let buttonStart, buttonStop;
+            let is_playing = false;
+            let status = "stand";
+            let count = 0;
+            let countNum = document.querySelector('.counter-num-in');
+            let countRange = document.querySelector('.counter-range-in');
+    
             buttonStart = document.querySelector('.button-start');
             buttonStart.addEventListener('click', function(){
                 init();
+                is_playing = true;
             });
     
-            buttonStart = document.querySelector('.button-stop');
+            buttonStop = document.querySelector('.button-stop');
             buttonStop.addEventListener('click', function(){
-                
+                is_playing = false;
+                count = 0;
+                countNum.innerHTML = count.toString() + " 회";
+                countRange.value = count;
             });
     
     
@@ -53,6 +63,7 @@ window.onload = function() {
                 window.requestAnimationFrame(loop);
             }
     
+            
             async function predict() {
                 // Prediction #1: run input through posenet
                 // estimatePose can take in an image, video or canvas html element
@@ -62,6 +73,36 @@ window.onload = function() {
                 } = await model.estimatePose(webcam.canvas);
                 // Prediction 2: run input through teachable machine classification model
                 const prediction = await model.predict(posenetOutput);
+    
+                // count exercise
+                if(prediction[0].probability.toFixed(2) == 1.00) {
+                    if(status == "push-down-side") {
+                        count++;
+                        countNum.innerHTML = count.toString() + " 회";
+                        countRange.value = count % 10 ;
+                    }
+                    status = "push-up-side";
+                }
+                else if(prediction[1].probability.toFixed(2) == 1.00) {
+                    
+                    status = "push-down-side";
+                }
+                else if(prediction[2].probability.toFixed(2) == 1.00) {
+                    
+                    status = "wrong-hip-down";
+                }
+                else if(prediction[3].probability.toFixed(2) == 1.00) {
+                    
+                    status = "wrong-hip-up";
+                }
+                else if(prediction[4].probability.toFixed(2) == 1.00) {
+                    
+                    status = "wrong-knee";
+                }
+                else if(prediction[5].probability.toFixed(2) == 1.00) {
+                    
+                    status = "stand";
+                }
     
                 for (let i = 0; i < maxPredictions; i++) {
                     const classPrediction =

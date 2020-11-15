@@ -223,16 +223,41 @@ nav {
     align-items: center;
     justify-content: center;
 }
+
 .counter-wrap {
     width: 90%;
     height: 90%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 1px solid firebrick;
     border-radius: 1em;
 }
 
+.counter-num {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.counter-num-in {
+    text-align: center;
+    font-size: 2em;
+}
+
+.counter-range {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.counter-range-in {
+    width: 90%;
+    height: 90%;
+}
 
 /* footer */
 .section-footer {
