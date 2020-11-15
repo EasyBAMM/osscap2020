@@ -1,12 +1,15 @@
 html,
 body {
+    width: 100%;
+    height: 100%;
     margin: 0;
 }
 
 /* container */
 .container {
     background-color: rgb(242, 242, 242);
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,14 +18,14 @@ body {
 /* section-header */
 .section-header {
     background-color: rgb(255, 255, 255);
-    width: 100vw;
-    height: 100px;
+    width: 100%;
+    height: 10%;
 }
 
 .page-header {
     background-color: rgb(255, 255, 255);
-    width: 90vw;
-    height: 100px;
+    width: 90%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -30,11 +33,18 @@ body {
 
 .page-header h1 {
     margin: 0;
+    width: 30%;
+    height: 100%;
 }
 
 .page-header a {
     color: rgb(8, 8, 8);
+    width: 100%;
+    height: 100%;
+    font-size: 0.6em;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .page-header a:hover {
@@ -45,23 +55,33 @@ body {
 
 
 .logo {
-    width: 60px;
-    height: 50px;
-    margin-top: 14px;
+    width: 30%;
+    height: 70%;
+}
+
+nav {
+    width: 30%;
+    height: 100%;
 }
 
 .main-nav {
+    width: 100%;
+    height: 100%;
     display: flex;
     font-size: 1.25em;
+    margin: 0;
+    padding: 0;
     text-transform: uppercase;
-    margin-top: 34px;
     list-style: none;
 }
 
 .main-nav li {
-    margin-left: 36px;
+    margin-left: 1em;
 }
 .main-nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
 }
 
@@ -69,14 +89,16 @@ body {
 .section-main {
     margin-top: 0;
     background-color: rgb(242, 242, 242);
-    min-width: 100vw;
+    width: 100%;
+    height: 86%;
 }
 
 .page-main {
-    width: 80vw;
-    height: 600px;
+    width: 80%;
+    height: 100%;
     margin: 0 auto;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 .page-main a {
@@ -84,7 +106,8 @@ body {
     border-radius: 1.25em;
     background-color: white;
     width: 30%;
-    text-decoration: none; 
+    height: 90%;
+    text-decoration: none;
 }
 .page-main a:hover {
     opacity: 0.9;
@@ -100,16 +123,34 @@ body {
 }
 .exercise-img {
     width: 100%;
-    height: 85%;
+    height: 80%;
 }
+
 .exercise-text {
+    width: 100%;
+    height: 20%;
+}
+.exercise-text-in {
     margin: auto 10px;
-    color: rgb(8, 8, 8);;
+    color: rgb(8, 8, 8);
 }
 
 /* footer */
+.section-footer {
+    width: 100%;
+    height: 4%;
+}
+
+footer {
+    width: 100%;
+    height: 100%;
+}
+
 footer p {
+    width: 100%;
+    height: 100%;
     margin: 0;
+    font-size: 0.1em;
     background-color: rgb(36,41,46);
     color: white;
     text-align: center;
