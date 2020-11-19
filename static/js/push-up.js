@@ -12,11 +12,17 @@ window.onload = function() {
             let count = 0;
             let countNum = document.querySelector('.counter-num-in');
             let countRange = document.querySelector('.counter-range-in');
+            let countAudio = 0;
+            let audio = null;
+            // let audio = new Audio('audio_file.mp3');
+            // audio.play();
     
             buttonStart = document.querySelector('.button-start');
             buttonStart.addEventListener('click', function(){
                 init();
                 is_playing = true;
+                audio = new Audio('../static/audio/push-up-start.mp3');
+                audio.play();
             });
     
             buttonStop = document.querySelector('.button-stop');
@@ -25,6 +31,10 @@ window.onload = function() {
                 count = 0;
                 countNum.innerHTML = count.toString() + " 회";
                 countRange.value = count;
+
+                countAudio = 0;
+                audio = new Audio('../static/audio/push-up-stop.mp3');
+                audio.play();
             });
     
     
@@ -75,11 +85,15 @@ window.onload = function() {
                 const prediction = await model.predict(posenetOutput);
     
                 // count exercise
-                if(prediction[0].probability.toFixed(2) == 1.00) {
+                if(prediction[0].probability.toFixed(2) > 0.90) {
                     if(status == "push-down-side") {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
+                        
+                        countAudio++;
+                        audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
+                        audio.play();
                     }
                     status = "push-up-side";
                 }
