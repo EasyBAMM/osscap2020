@@ -35,13 +35,13 @@ def squat():
 @app.route('/side-legraise.html')
 @cross_origin()  
 def sideLegraise():
-    
+	
 	return render_template('side-legraise.html', url_server=url_server, enumerate=enumerate)
 
 @app.route('/push-up.html')
 @cross_origin()  
 def pushUp():
-    
+	
 	return render_template('push-up.html', url_server=url_server, enumerate=enumerate)
 
 
@@ -110,7 +110,7 @@ def led():
 def pushStart():
 	try:
 		for i in range(0, 3):
-    		arrayScreen = Status.get_pushUp
+			arrayScreen = Status.get_pushUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -129,7 +129,7 @@ def pushStart():
 def squattart():
 	try:
 		for i in range(0, 3):
-    		arrayScreen = Status.get_squatStand
+			arrayScreen = Status.get_squatStand
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -148,7 +148,7 @@ def squattart():
 def sideLegraiseStart():
 	try:
 		for i in range(0, 2):
-    		arrayScreen = Status.get_sideHeadUp
+			arrayScreen = Status.get_sideHeadUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -175,8 +175,8 @@ def sideLegraiseStart():
 @app.route('/wrong-pose')
 @cross_origin()  
 def wrongPose():
-    arrayScreen = Status.get_wrong
-    try: 
+	arrayScreen = Status.get_wrong
+	try: 
 		iScreen = Matrix(arrayScreen)
 		oScreen = Matrix(iScreen)
 		draw_matrix(oScreen)
@@ -189,8 +189,8 @@ def wrongPose():
 @app.route('/stop-all')
 @cross_origin()  
 def stopAll():
-    arrayScreen = Status.arrayNone
-    try: 
+	arrayScreen = Status.arrayNone
+	try: 
 		iScreen = Matrix(arrayScreen)
 		oScreen = Matrix(iScreen)
 		draw_matrix(oScreen)
