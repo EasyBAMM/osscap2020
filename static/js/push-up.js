@@ -106,20 +106,19 @@ window.onload = function() {
     
                 // count exercise
                 if(prediction[0].probability.toFixed(2) == 1.00) {
-                    if(status == "push-down-side") {
+                    if(status == "push-down-side" && is_exercise == true) {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
                         
-                        if(is_exercise == true) {
-                            fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
-                            .then((res) => {
-                                res.text();
-                            })
-                            .then((data) => {
-                                console.log(data);
-                            }); 
-                        }
+                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+                        
                         
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
@@ -131,28 +130,24 @@ window.onload = function() {
 
                     status = "push-down-side";
                 }
-                else if(prediction[2].probability.toFixed(2) == 1.00) {
-                    if(status != "wrong-hip-down") {
-                        if(is_exercise == true) {
-                            fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
-                            .then((res) => {
-                                res.text();
-                            })
-                            .then((data) => {
-                                console.log(data);
-                            }); 
-                            audio = new Audio( "../static/audio/hipdown-wrongpose.mp3" );
-                            audio.play();
-                        }
-                      
+                else if(prediction[2].probability.toFixed(2) == 1.00 ) {
+                    if(status != "wrong-hip-down" && is_exercise == true) {
+                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+                        audio = new Audio( "../static/audio/hipdown-wrongpose.mp3" );
+                        audio.play();
                     }
 
                     status = "wrong-hip-down";
                 }
                 else if(prediction[3].probability.toFixed(2) > 0.95) {
-                    if(status != "wrong-hip-up") {
-                        if(is_exercise == true) {
-                            fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                    if(status != "wrong-hip-up" && is_exercise == true) {
+                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
                         .then((res) => {
                             res.text();
                         })
@@ -161,14 +156,12 @@ window.onload = function() {
                         }); 
                         audio = new Audio( "../static/audio/hipup-wrongpose.mp3" );
                         audio.play();
-                        }   
                     }
 
                     status = "wrong-hip-up";
                 }
                 else if(prediction[4].probability.toFixed(2) > 0.95) {
-                    if(status != "wrong-knee") {
-                        if(is_exercise == true) {
+                    if(status != "wrong-knee" && is_exercise == true) {
                             fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
                             .then((res) => {
                                 res.text();
@@ -177,8 +170,7 @@ window.onload = function() {
                                 console.log(data);
                             }); 
                             audio = new Audio( "../static/audio/knee-wrongpose.mp3" );
-                            audio.play();
-                        }                       
+                            audio.play();              
                     }
                     status = "wrong-knee";
                 }

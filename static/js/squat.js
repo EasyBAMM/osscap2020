@@ -106,21 +106,19 @@ window.onload = function() {
 
             // count exercise
             if(prediction[0].probability.toFixed(2) > 0.95) {
-                if(status == "squat") {
+                if(status == "squat" && is_exercise == true) {
                     count++;
                     countNum.innerHTML = count.toString() + " 회";
                     countRange.value = count % 10 ;
 
-                    if(is_exercise == true) {
-                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
-                        .then((res) => {
-                            res.text();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }); 
-                    }
-
+                    fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                    .then((res) => {
+                        res.text();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    }); 
+                    
                     countAudio++;
                     audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
                     audio.play();
@@ -134,18 +132,15 @@ window.onload = function() {
                 status = "squat";
             }
             else if(prediction[2].probability.toFixed(2) > 0.95) {
-                if(status != "bent") {
-                    
-                    if(is_exercise == true) {
-                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
-                        .then((res) => {
-                            res.text();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        });     
-                    }
-                  
+                if(status != "bent" && is_exercise == true) {
+                    fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                    .then((res) => {
+                        res.text();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    });     
+                                  
                     audio = new Audio( "../static/audio/squat-wrongpose.mp3" );
                     audio.play();
                 }
