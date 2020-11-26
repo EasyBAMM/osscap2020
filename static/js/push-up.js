@@ -41,6 +41,14 @@ window.onload = function() {
                 countNum.innerHTML = count.toString() + " 회";
                 countRange.value = count;
 
+                fetch('http://localhost:5000/stop-all', {mode:'no-cors'})
+                .then((res) => {
+                    res.text();
+                })
+                .then((data) => {
+                    console.log(data);
+                }); 
+
                 countAudio = 0;
                 audio = new Audio('../static/audio/push-up-stop.mp3');
                 audio.play();

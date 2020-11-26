@@ -7,7 +7,7 @@ from status import *
 import time
 
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, static_url_path='/static') 
 CORS(app, resources={r'*':{'origins':'*'}})
 app.config['CORS_HEADERS'] = 'content-Type'
 
@@ -20,28 +20,28 @@ url_server = {
 
 @app.route('/')
 @app.route('/index.html')
-@cross_origin()
+@cross_origin()  
 def home():
 
 	return render_template('index.html', url_server=url_server, enumerate=enumerate)
 
 @app.route('/squat.html')
-@cross_origin()
+@cross_origin()  
 def squat():
 
 	return render_template('squat.html', url_server=url_server, enumerate=enumerate)
 
 
 @app.route('/side-legraise.html')
-@cross_origin()
+@cross_origin()  
 def sideLegraise():
-
+    
 	return render_template('side-legraise.html', url_server=url_server, enumerate=enumerate)
 
 @app.route('/push-up.html')
-@cross_origin()
+@cross_origin()  
 def pushUp():
-
+    
 	return render_template('push-up.html', url_server=url_server, enumerate=enumerate)
 
 
@@ -67,129 +67,138 @@ def draw_matrix(m):
 			print()
 
 @app.route('/led')
-@cross_origin()
+@cross_origin()  
 def led():
 	led_count = request.args.get('count')
 	led_count = int(led_count)
-
+	
 	if(led_count == 0):
-			arrayScreen = Status.arrayNum0
+			arrayScreen = Status.get_num0
 	elif(led_count == 1):
-			arrayScreen = Status.arrayNum1
+			arrayScreen = Status.get_num1
 	elif(led_count == 2):
-			arrayScreen = Status.arrayNum2
+			arrayScreen = Status.get_num2
 	elif(led_count == 3):
-			arrayScreen = Status.arrayNum3
+			arrayScreen = Status.get_num3
 	elif(led_count == 4):
-			arrayScreen = Status.arrayNum4
+			arrayScreen = Status.get_num4
 	elif(led_count == 5):
-			arrayScreen = Status.arrayNum5
+			arrayScreen = Status.get_num5
 	elif(led_count == 6):
-			arrayScreen = Status.arrayNum6
+			arrayScreen = Status.get_num6
 	elif(led_count == 7):
-			arrayScreen = Status.arrayNum7
+			arrayScreen = Status.get_num7
 	elif(led_count == 8):
-			arrayScreen = Status.arrayNum8
+			arrayScreen = Status.get_num8
 	elif(led_count == 9):
-			arrayScreen = Status.arrayNum9
+			arrayScreen = Status.get_num9
 	else:
 			return "led count wrong"
-
-	try:
-		iScreen = Matrix(arrayScreen)
-		oScreen = Matrix(iScreen)
-		draw_matrix(oScreen)
+	
+	try: 
+			iScreen = Matrix(arrayScreen)
+			oScreen = Matrix(iScreen)
+			draw_matrix(oScreen)
 	except Exception as err:
-		print("[Error] : ", err)
-		return "led fail"
-
+			print("[Error] : ", err)
+			return "led fail"
+		
 	return "led ok"
 
 @app.route('/push-start')
-@cross_origin()
+@cross_origin()  
 def pushStart():
 	try:
-		for i in range(0, 2):
-			arrayScreen = Status.arrayPushUp
+		for i in range(0, 3):
+    		arrayScreen = Status.get_pushUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.3)
-			arrayScreen = Status.arrayPushDown
+			time.sleep(0.4)
+			arrayScreen = Status.get_pushDown
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.3)
+			time.sleep(0.4)
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
-	
-	return "push ok"
 
 @app.route('/squat-start')
-@cross_origin()
-def squatStart():
+@cross_origin()  
+def squattart():
 	try:
-		for i in range(0, 2):
-			arrayScreen = Status.arraySquatStand
+		for i in range(0, 3):
+    		arrayScreen = Status.get_squatStand
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.3)
-			arrayScreen = Status.arraySquat
+			time.sleep(0.4)
+			arrayScreen = Status.get_squat
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.3)
+			time.sleep(0.4)
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
-	return "squat ok"
-	
+
 @app.route('/sidelegraise-start')
-@cross_origin()
+@cross_origin()  
 def sideLegraiseStart():
 	try:
 		for i in range(0, 2):
-			arrayScreen = Status.arraySideHeadUp
+    		arrayScreen = Status.get_sideHeadUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.2)
-			arrayScreen = Status.arraySideLeft
+			time.sleep(0.4)
+			arrayScreen = Status.get_sideLeft
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.2)
-			arrayScreen = Status.arraySideHeadUp
+			time.sleep(0.4)
+			arrayScreen = Status.get_sideHeadUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.2)
-			arrayScreen = Status.arraySideRight
+			time.sleep(0.4)
+			arrayScreen = Status.get_sideRight
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
-			time.sleep(0.2)
+			time.sleep(0.4)
 	except Exception as err:
 		print("[Error] : ", err)
-		return "led fail"
-	
-	return "sideLegraise ok"
-	
+		return "led fail"	
+
 @app.route('/wrong-pose')
-@cross_origin()
+@cross_origin()  
 def wrongPose():
-	arrayScreen = Status.arrayWrong
-	try:
+    arrayScreen = Status.get_wrong
+    try: 
 		iScreen = Matrix(arrayScreen)
 		oScreen = Matrix(iScreen)
 		draw_matrix(oScreen)
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
+		
+	return "led ok"	
 
-	return "wrong ok"
+@app.route('/stop-all')
+@cross_origin()  
+def stopAll():
+    arrayScreen = Status.arrayNone
+    try: 
+		iScreen = Matrix(arrayScreen)
+		oScreen = Matrix(iScreen)
+		draw_matrix(oScreen)
+	except Exception as err:
+		print("[Error] : ", err)
+		return "led fail"
+		
+	return "led ok"		
 
 ''' ***************************************************************************'''
 
