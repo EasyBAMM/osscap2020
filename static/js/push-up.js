@@ -115,19 +115,51 @@ window.onload = function() {
                     status = "push-up-side";
                 }
                 else if(prediction[1].probability.toFixed(2) > 0.95) {
-                    
+
                     status = "push-down-side";
                 }
                 else if(prediction[2].probability.toFixed(2) == 1.00) {
-                    
+                    if(status != "wrong-hip-down") {
+                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+                        audio = new Audio( "../static/audio/hipdown-wrongpose.mp3" );
+                        audio.play();
+                    }
+
                     status = "wrong-hip-down";
                 }
                 else if(prediction[3].probability.toFixed(2) == 1.00) {
-                    
+                    if(status != "wrong-hip-up") {
+                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+                        audio = new Audio( "../static/audio/hipup-wrongpose.mp3" );
+                        audio.play();
+                    }
+
                     status = "wrong-hip-up";
                 }
                 else if(prediction[4].probability.toFixed(2) == 1.00) {
-                    
+                    if(status != "wrong-knee") {
+                        fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+                        audio = new Audio( "../static/audio/knee-wrongpose.mp3" );
+                        audio.play();
+                    }
                     status = "wrong-knee";
                 }
                 else if(prediction[5].probability.toFixed(2) == 1.00) {

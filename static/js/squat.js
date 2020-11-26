@@ -122,8 +122,20 @@ window.onload = function() {
                 
                 status = "squat";
             }
-            else if(prediction[2].probability.toFixed(2) > 0.90) {
-                
+            else if(prediction[2].probability.toFixed(2) > 0.95) {
+                if(status != "bent") {
+                    fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
+                    .then((res) => {
+                        res.text();
+                    })
+                    .then((data) => {
+                        console.log(data);
+                    }); 
+
+                    audio = new Audio( "../static/audio/squat-wrongpose.mp3" );
+                    audio.play();
+                }
+
                 status = "bent";
             }
 
