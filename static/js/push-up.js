@@ -105,7 +105,7 @@ window.onload = function() {
                 const prediction = await model.predict(posenetOutput);
     
                 // count exercise
-                if(prediction[0].probability.toFixed(2) > 0.95) {
+                if(prediction[0].probability.toFixed(2) == 1.00) {
                     if(status == "push-down-side") {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
@@ -127,7 +127,7 @@ window.onload = function() {
                     }
                     status = "push-up-side";
                 }
-                else if(prediction[1].probability.toFixed(2) > 0.95) {
+                else if(prediction[1].probability.toFixed(2) == 1.00) {
 
                     status = "push-down-side";
                 }
@@ -149,7 +149,7 @@ window.onload = function() {
 
                     status = "wrong-hip-down";
                 }
-                else if(prediction[3].probability.toFixed(2) == 1.00) {
+                else if(prediction[3].probability.toFixed(2) > 0.95) {
                     if(status != "wrong-hip-up") {
                         if(is_exercise == true) {
                             fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
@@ -166,7 +166,7 @@ window.onload = function() {
 
                     status = "wrong-hip-up";
                 }
-                else if(prediction[4].probability.toFixed(2) == 1.00) {
+                else if(prediction[4].probability.toFixed(2) > 0.95) {
                     if(status != "wrong-knee") {
                         if(is_exercise == true) {
                             fetch('http://localhost:5000/wrong-pose', {mode:'no-cors'})
