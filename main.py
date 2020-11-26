@@ -73,25 +73,25 @@ def led():
 	led_count = int(led_count)
 
 	if(led_count == 0):
-			arrayScreen = Status.get_num0
+			arrayScreen = Status.arrayNum0
 	elif(led_count == 1):
-			arrayScreen = Status.get_num1
+			arrayScreen = Status.arrayNum1
 	elif(led_count == 2):
-			arrayScreen = Status.get_num2
+			arrayScreen = Status.arrayNum2
 	elif(led_count == 3):
-			arrayScreen = Status.get_num3
+			arrayScreen = Status.arrayNum3
 	elif(led_count == 4):
-			arrayScreen = Status.get_num4
+			arrayScreen = Status.arrayNum4
 	elif(led_count == 5):
-			arrayScreen = Status.get_num5
+			arrayScreen = Status.arrayNum5
 	elif(led_count == 6):
-			arrayScreen = Status.get_num6
+			arrayScreen = Status.arrayNum6
 	elif(led_count == 7):
-			arrayScreen = Status.get_num7
+			arrayScreen = Status.arrayNum7
 	elif(led_count == 8):
-			arrayScreen = Status.get_num8
+			arrayScreen = Status.arrayNum8
 	elif(led_count == 9):
-			arrayScreen = Status.get_num9
+			arrayScreen = Status.arrayNum9
 	else:
 			return "led count wrong"
 
@@ -110,12 +110,12 @@ def led():
 def pushStart():
 	try:
 		for i in range(0, 2):
-			arrayScreen = Status.get_pushUp
+			arrayScreen = Status.arrayPushUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
 			time.sleep(0.3)
-			arrayScreen = Status.get_pushDown
+			arrayScreen = Status.arrayPushDown
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -131,12 +131,12 @@ def pushStart():
 def squatStart():
 	try:
 		for i in range(0, 2):
-			arrayScreen = Status.get_squatStand
+			arrayScreen = Status.arraySquatStand
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
 			time.sleep(0.3)
-			arrayScreen = Status.get_squat
+			arrayScreen = Status.arraySquat
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -151,22 +151,22 @@ def squatStart():
 def sideLegraiseStart():
 	try:
 		for i in range(0, 2):
-			arrayScreen = Status.get_sideHeadUp
+			arrayScreen = Status.arraySideHeadUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
 			time.sleep(0.2)
-			arrayScreen = Status.get_sideLeft
+			arrayScreen = Status.arraySideLeft
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
 			time.sleep(0.2)
-			arrayScreen = Status.get_sideHeadUp
+			arrayScreen = Status.arraySideHeadUp
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
 			time.sleep(0.2)
-			arrayScreen = Status.get_sideRight
+			arrayScreen = Status.arraySideRight
 			iScreen = Matrix(arrayScreen)
 			oScreen = Matrix(iScreen)
 			draw_matrix(oScreen)
@@ -180,7 +180,7 @@ def sideLegraiseStart():
 @app.route('/wrong-pose')
 @cross_origin()
 def wrongPose():
-	arrayScreen = Status.get_wrong
+	arrayScreen = Status.arrayWrong
 	try:
 		iScreen = Matrix(arrayScreen)
 		oScreen = Matrix(iScreen)
