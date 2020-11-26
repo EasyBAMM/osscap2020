@@ -64,7 +64,7 @@ def draw_matrix(m):
 							LMD.set_pixel(y, 19-x, 4)
 					else:
 							continue
-			print()
+	#		print()
 
 @app.route('/led')
 @cross_origin()  
