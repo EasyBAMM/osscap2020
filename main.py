@@ -123,10 +123,12 @@ def pushStart():
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
+	
+	return "push ok"
 
 @app.route('/squat-start')
 @cross_origin()
-def squattart():
+def squatStart():
 	try:
 		for i in range(0, 2):
 			arrayScreen = Status.get_squatStand
@@ -142,7 +144,8 @@ def squattart():
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
-
+	return "squat ok"
+	
 @app.route('/sidelegraise-start')
 @cross_origin()
 def sideLegraiseStart():
@@ -171,7 +174,9 @@ def sideLegraiseStart():
 	except Exception as err:
 		print("[Error] : ", err)
 		return "led fail"
-
+	
+	return "sideLegraise ok"
+	
 @app.route('/wrong-pose')
 @cross_origin()
 def wrongPose():
@@ -184,7 +189,7 @@ def wrongPose():
 		print("[Error] : ", err)
 		return "led fail"
 
-	return "led ok"
+	return "wrong ok"
 
 ''' ***************************************************************************'''
 
