@@ -21,6 +21,15 @@ window.onload = function() {
             buttonStart.addEventListener('click', function(){
                 init();
                 is_playing = true;
+
+                fetch('http://localhost:5000/sidelegraise-start', {mode:'no-cors'})
+                .then((res) => {
+                    res.text();
+                })
+                .then((data) => {
+                    console.log(data);
+                }); 
+
                 audio = new Audio('../static/audio/sidelegraise-start.mp3');
                 audio.play();
             });
@@ -88,7 +97,7 @@ window.onload = function() {
                     
                     status = "stand";
                 }
-                else if(prediction[1].probability.toFixed(2) == 1.00) {
+                else if(prediction[1].probability.toFixed(2) > 0.95) {
                     
                     status = "headup";
                 }
@@ -97,6 +106,14 @@ window.onload = function() {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
+
+                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
 
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
@@ -109,6 +126,14 @@ window.onload = function() {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
+
+                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
 
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );

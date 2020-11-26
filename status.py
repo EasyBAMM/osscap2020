@@ -773,12 +773,12 @@ class Status:
     def get_sideLeft(self):
         return Status.arraySideLeft
     
-    def get_siderRight(self):
+    def get_sideRight(self):
         return Status.arraySideRight
     
-    def get_sidePushUp(self):
+    def get_pushUp(self):
         return Status.arrayPushUp
     
-    def get_sidePushUp(self):
+    def get_pushDown(self):
         return Status.arrayPushDown
         

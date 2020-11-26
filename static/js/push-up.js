@@ -21,6 +21,15 @@ window.onload = function() {
             buttonStart.addEventListener('click', function(){
                 init();
                 is_playing = true;
+
+                fetch('http://localhost:5000/push-start', {mode:'no-cors'})
+                .then((res) => {
+                    res.text();
+                })
+                .then((data) => {
+                    console.log(data);
+                }); 
+
                 audio = new Audio('../static/audio/push-up-start.mp3');
                 audio.play();
             });
@@ -85,19 +94,27 @@ window.onload = function() {
                 const prediction = await model.predict(posenetOutput);
     
                 // count exercise
-                if(prediction[0].probability.toFixed(2) > 0.90) {
+                if(prediction[0].probability.toFixed(2) > 0.95) {
                     if(status == "push-down-side") {
                         count++;
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
                         
+                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                        .then((res) => {
+                            res.text();
+                        })
+                        .then((data) => {
+                            console.log(data);
+                        }); 
+
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
                         audio.play();
                     }
                     status = "push-up-side";
                 }
-                else if(prediction[1].probability.toFixed(2) == 1.00) {
+                else if(prediction[1].probability.toFixed(2) > 0.95) {
                     
                     status = "push-down-side";
                 }

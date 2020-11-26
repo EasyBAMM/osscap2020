@@ -22,7 +22,7 @@ window.onload = function() {
             init();
             is_playing = true;
 
-            fetch('http://localhost:5000/led?count=' + "0", {mode:'no-cors'})
+            fetch('http://localhost:5000/squat-start', {mode:'no-cors'})
             .then((res) => {
                 res.text();
             })
@@ -96,7 +96,7 @@ window.onload = function() {
             const prediction = await model.predict(posenetOutput);
 
             // count exercise
-            if(prediction[0].probability.toFixed(2) > 0.90) {
+            if(prediction[0].probability.toFixed(2) > 0.95) {
                 if(status == "squat") {
                     count++;
                     countNum.innerHTML = count.toString() + " 회";
@@ -118,7 +118,7 @@ window.onload = function() {
                 }
                 status = "stand";
             }
-            else if(prediction[1].probability.toFixed(2) > 0.90) {
+            else if(prediction[1].probability.toFixed(2) > 0.95) {
                 
                 status = "squat";
             }
