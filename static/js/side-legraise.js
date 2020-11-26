@@ -14,6 +14,7 @@ window.onload = function() {
             let countRange = document.querySelector('.counter-range-in');
             let countAudio = 0;
             let audio = null;
+            let is_exercise = null;
             // let audio = new Audio('audio_file.mp3');
             // audio.play();
     
@@ -32,6 +33,7 @@ window.onload = function() {
 
                 audio = new Audio('../static/audio/sidelegraise-start.mp3');
                 audio.play();
+                is_exercise = true;
             });
     
             buttonStop = document.querySelector('.button-stop');
@@ -52,6 +54,8 @@ window.onload = function() {
                 countAudio = 0;
                 audio = new Audio('../static/audio/sidelegraise-stop.mp3');
                 audio.play();
+
+                is_exercise = false;
             });
     
             async function init() {
@@ -115,14 +119,16 @@ window.onload = function() {
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
 
-                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
-                        .then((res) => {
-                            res.text();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }); 
-
+                        if(is_exercise == true) {
+                            fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                            .then((res) => {
+                                res.text();
+                            })
+                            .then((data) => {
+                                console.log(data);
+                            }); 
+                        }
+            
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
                         audio.play();
@@ -135,14 +141,16 @@ window.onload = function() {
                         countNum.innerHTML = count.toString() + " 회";
                         countRange.value = count % 10 ;
 
-                        fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
-                        .then((res) => {
-                            res.text();
-                        })
-                        .then((data) => {
-                            console.log(data);
-                        }); 
-
+                        if(is_exercise == true) {
+                            fetch('http://localhost:5000/led?count=' + (count % 10), {mode:'no-cors'})
+                            .then((res) => {
+                                res.text();
+                            })
+                            .then((data) => {
+                                console.log(data);
+                            }); 
+                        }
+                        
                         countAudio++;
                         audio = new Audio( "../static/audio/" + (countAudio % 10) + ".mp3" );
                         audio.play();
