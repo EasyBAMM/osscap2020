@@ -15,3 +15,6 @@ https://easybamm.github.io/osscap2020/templates/index.html
 web browser url : http://localhost:5000 접속
 
 ------------
+
+## youtube url
+https://youtu.be/yS7HfHNXa28
